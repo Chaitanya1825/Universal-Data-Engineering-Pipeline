@@ -94,3 +94,7 @@ ehthumbs.db
 Thumbs.db
 desktop.ini
 *.tmp
+
+# Generated pipeline outputs
+data/processed/*.csv
+data/validated/*.csv
