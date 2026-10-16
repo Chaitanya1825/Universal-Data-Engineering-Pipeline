@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-data-engineering-pipeline"
+version = "1.0.0"
+description = "A configurable, domain-agnostic data engineering system for multi-format ingestion, schema profiling, transformation, validation, and analytics reporting."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Data Engineering Team" }
+]
+keywords = [
+    "data-engineering",
+    "etl-pipeline",
+    "data-quality",
+    "schema-detection",
+    "postgresql",
+    "powerbi",
+    "analytics-dashboard"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Database",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "pandas>=2.2.0,<3.0.0",
+    "numpy>=1.26.0,<3.0.0",
+    "SQLAlchemy>=2.0.0,<3.0.0",
+    "psycopg2-binary>=2.9.9,<3.0.0",
+    "python-dotenv>=1.0.0,<2.0.0",
+    "openpyxl>=3.1.0,<4.0.0",
+    "flask>=3.0.0,<4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "flake8>=7.0.0",
+]
+
+[project.scripts]
+run-pipeline = "run_pipeline:main"
+run-dashboard = "run_dashboard:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pipeline*", "dashboard*"]

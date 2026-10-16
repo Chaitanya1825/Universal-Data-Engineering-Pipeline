@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "schema": "public",
+  "connection_mode": "import",
+  "supported_connection_modes": [
+    "import",
+    "directquery"
+  ],
+  "max_tables": 50,
+  "generate_views": true,
+  "generate_metadata": true,
+  "generate_dax_templates": true,
+  "generate_visualization_recommendations": true,
+  "generate_refresh_guidance": true,
+  "generate_rls_guidance": true,
+  "output_formats": [
+    "json",
+    "csv"
+  ]
+}

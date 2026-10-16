@@ -1,0 +1,7 @@
+[
+  {"emp_id": "E101", "name": "Amina Khan", "department": "Engineering", "salary": 85000, "city": "Bengaluru"},
+  {"emp_id": "E102", "name": "Carlos Rivera", "department": "Marketing", "salary": 62000, "city": "Madrid"},
+  {"emp_id": "E103", "name": "Elena Rostova", "department": "Finance", "salary": 78000, "city": "Warsaw"},
+  {"emp_id": "E104", "name": "Devin Lee", "department": "Engineering", "salary": 92000, "city": "Toronto"},
+  {"emp_id": "E105", "name": "Fatima Zahra", "department": "Human Resources", "salary": 59000, "city": "Dubai"}
+]

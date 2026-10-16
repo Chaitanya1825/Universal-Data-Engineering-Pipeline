@@ -1,0 +1,21 @@
+## Description
+Please include a summary of the changes and the related issue/feature. Mention any new modules, stages, or tests introduced.
+
+Fixes / Closes # (issue if applicable)
+
+## Type of Change
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Refactoring or code quality improvement
+- [ ] Documentation update
+- [ ] CI / Tooling improvement
+
+## Checklist
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my own code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation (e.g. `README.md`)
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] All 257+ unit tests pass locally (`python -m unittest discover tests`)
+- [ ] I have not committed any passwords, connection strings, or personal credentials

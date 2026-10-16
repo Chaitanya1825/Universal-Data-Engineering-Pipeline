@@ -1,0 +1,96 @@
+# ==============================================================================
+# Git Ignore - Universal Data Engineering Pipeline
+# ==============================================================================
+
+# Environment Variables & Local Credentials
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+
+# Python Bytecode, Caches & Coverage
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.cover
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Build, Packaging & Distribution
+build/
+dist/
+*.egg-info/
+*.egg
+develop-eggs/
+eggs/
+parts/
+var/
+sdist/
+wheels/
+
+# IDE & Editor Configuration
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Runtime Execution Logs (Preserves directory with .gitkeep)
+logs/*
+*.log
+!logs/.gitkeep
+
+# Runtime State & Checkpoints (Preserves directory with .gitkeep)
+state/*
+!state/.gitkeep
+
+# Generated Runtime Reports (Preserves directory structure with .gitkeep)
+reports/*.csv
+reports/*.json
+reports/analytics/*.csv
+reports/analytics/*.json
+reports/powerbi/*.csv
+reports/powerbi/*.json
+!reports/.gitkeep
+!reports/analytics/.gitkeep
+!reports/powerbi/.gitkeep
+
+# Scratch & Temporary Testing Directory (Preserves directory with .gitkeep)
+scratch/*
+!scratch/.gitkeep
+
+# Local Temporary Databases & Dumps
+*.db
+*.sqlite
+*.sqlite3
+!test_*.db
+*.dump
+
+# OS-Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+*.tmp

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Universal Data Engineering Pipeline - Analytical Dashboard</title>
+  <meta name="description" content="Automatic interactive analytics dashboard generated from structured datasets by Universal Data Engineering Pipeline">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Chart.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/static/css/dashboard.css">
+</head>
+<body class="dark-theme">
+  <!-- Top Navigation Bar -->
+  <header class="app-header" id="app-header">
+    <div class="header-left">
+      <div class="brand-logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">Universal Pipeline</span>
+          <span class="brand-subtitle">Interactive Analytics</span>
+        </div>
+      </div>
+      <div class="badge-group">
+        <span class="badge badge-primary" id="version-badge">v2.0 Production</span>
+        <span class="badge badge-success" id="health-badge">
+          <span class="pulse-dot"></span> HEALTHY
+        </span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="connection-pill" id="db-connection-pill">
+        <span class="status-indicator" id="db-status-dot"></span>
+        <span class="connection-label" id="db-connection-text">Checking Database...</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn btn-secondary" id="btn-open-upload" title="Upload new dataset">
+        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+        </svg>
+        <span>Upload Data</span>
+      </button>
+
+      <button class="btn btn-primary" id="btn-run-pipeline" title="Run end-to-end pipeline">
+        <svg class="btn-icon" id="run-pipeline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="5 3 19 12 5 21 5 3"/>
+        </svg>
+        <span id="run-pipeline-text">Run Pipeline</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Notification Banner (Alerts, Warnings) -->
+  <div class="notification-container" id="notification-container"></div>
+
+  <!-- Main Dashboard Container -->
+  <main class="dashboard-main" id="dashboard-main">
+
+    <!-- Control & Slicers Bar (ZONE 1) -->
+    <section class="control-panel-zone" id="zone-1-controls">
+      <div class="control-card">
+        <div class="control-group dataset-selector-group">
+          <label for="dataset-select" class="control-label">
+            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+            </svg>
+            Active Dataset
+          </label>
+          <div class="select-wrapper">
+            <select id="dataset-select" class="form-select" aria-label="Select Active Dataset">
+              <option value="" disabled selected>Loading datasets...</option>
+            </select>
+          </div>
+          <span class="dataset-source-tag" id="dataset-source-tag">Source: ...</span>
+        </div>
+
+        <div class="control-group filter-group" id="category-filter-group" style="display: none;">
+          <label for="category-filter" class="control-label" id="category-filter-label">Category Filter</label>
+          <div class="select-wrapper">
+            <select id="category-filter" class="form-select">
+              <option value="ALL">All Categories</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="control-group filter-group" id="date-filter-group" style="display: none;">
+          <label class="control-label" id="date-filter-label">Date Window</label>
+          <div class="date-range-inputs">
+            <input type="date" id="date-filter-start" class="form-input-date" title="Start Date">
+            <span class="date-sep">to</span>
+            <input type="date" id="date-filter-end" class="form-input-date" title="End Date">
+          </div>
+        </div>
+
+        <div class="control-group actions-group">
+          <button class="btn btn-ghost btn-sm" id="btn-reset-filters" title="Reset all active slicers">
+            <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+              <path d="M3 3v5h5"/>
+            </svg>
+            Reset Filters
+          </button>
+          <button class="btn btn-ghost btn-sm" id="btn-toggle-pipeline-stages" title="View execution stages">
+            <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+            Pipeline Stages
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline Execution Stages Accordion / Card -->
+    <section class="pipeline-tracker-section" id="pipeline-tracker-section" style="display: none;">
+      <div class="panel-card">
+        <div class="panel-header">
+          <div class="panel-title-group">
+            <h3 class="panel-title">End-to-End Pipeline Execution Stages</h3>
+            <span class="panel-subtitle" id="pipeline-run-id-text">Run ID: ...</span>
+          </div>
+          <div class="panel-actions">
+            <span class="badge" id="pipeline-overall-status">IDLE</span>
+            <button class="btn-close" id="btn-close-tracker" aria-label="Close stage tracker">&times;</button>
+          </div>
+        </div>
+        <div class="stages-flow" id="stages-flow-container">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Executive KPI Strip (ZONE 2) -->
+    <section class="kpi-strip-zone" id="zone-2-kpis">
+      <div class="kpi-grid" id="kpi-cards-grid">
+        <!-- Rendered dynamically via JS -->
+        <div class="kpi-skeleton-card"></div>
+        <div class="kpi-skeleton-card"></div>
+        <div class="kpi-skeleton-card"></div>
+        <div class="kpi-skeleton-card"></div>
+      </div>
+    </section>
+
+    <!-- Primary Analytical Visuals Grid (ZONE 3) -->
+    <section class="visuals-zone" id="zone-3-visuals">
+      <div class="visuals-grid" id="visuals-grid">
+        <!-- Chart containers populated dynamically via JS -->
+      </div>
+      <div class="empty-charts-message" id="empty-charts-message" style="display: none;">
+        <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p class="empty-title">No analytical charts to display</p>
+        <p class="empty-desc" id="empty-charts-desc">This dataset does not contain numeric metrics or categories for charts. Data is available in the audit records table below.</p>
+      </div>
+    </section>
+
+    <!-- Granular Audit Records Table & Quality Drawer (ZONE 4) -->
+    <section class="details-zone" id="zone-4-details">
+      <div class="panel-card">
+        <div class="panel-header table-panel-header">
+          <div class="table-header-left">
+            <h3 class="panel-title" id="table-title">Granular Audit Records</h3>
+            <span class="row-counter-badge" id="table-row-counter">0 records</span>
+          </div>
+
+          <div class="table-header-actions">
+            <div class="search-box">
+              <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              <input type="text" id="table-search-input" class="form-input-search" placeholder="Search records...">
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-export-csv" title="Export verified records to CSV">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Export CSV
+            </button>
+            <button class="btn btn-ghost btn-sm" id="btn-view-quality-audit" title="View validation failure details">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Quality Audit
+            </button>
+            <button class="btn btn-ghost btn-sm" id="btn-view-powerbi-spec" title="View Power BI Semantic Model details">
+              <svg class="btn-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+              Power BI Spec
+            </button>
+          </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-responsive" id="table-responsive-container">
+          <table class="data-table" id="data-table">
+            <thead id="data-table-head">
+              <!-- Populated via JS -->
+            </thead>
+            <tbody id="data-table-body">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Table Pagination -->
+        <div class="table-pagination" id="table-pagination">
+          <div class="pagination-info" id="pagination-info">Showing 0 of 0 records</div>
+          <div class="pagination-controls">
+            <button class="btn btn-ghost btn-sm" id="btn-prev-page" disabled>&larr; Previous</button>
+            <span class="pagination-page-indicator" id="page-indicator">Page 1</span>
+            <button class="btn btn-ghost btn-sm" id="btn-next-page" disabled>Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Upload Modal -->
+  <div class="modal-overlay" id="upload-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Upload Structured Dataset</h3>
+        <button class="btn-close" id="btn-close-upload-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-instruction">Upload any structured CSV, Excel (.xlsx), or JSON file. The dataset will land in <code>data/raw/</code> and be automatically profiled, cleaned, validated, loaded into PostgreSQL, and rendered on the dashboard upon running the pipeline.</p>
+        
+        <div class="dropzone" id="upload-dropzone">
+          <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+          <p class="dropzone-text">Drag & drop files here, or <span class="dropzone-browse">browse</span></p>
+          <span class="dropzone-hint">Supports CSV, XLSX, and JSON (up to 50MB)</span>
+          <input type="file" id="file-input" class="file-input-hidden" accept=".csv,.xlsx,.json">
+        </div>
+
+        <div class="selected-file-card" id="selected-file-card" style="display: none;">
+          <div class="file-info-group">
+            <svg class="file-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+            </svg>
+            <div>
+              <div class="file-name" id="selected-file-name">filename.csv</div>
+              <div class="file-meta" id="selected-file-meta">0 KB • CSV</div>
+            </div>
+          </div>
+          <button class="btn-remove-file" id="btn-remove-file">&times;</button>
+        </div>
+
+        <div class="upload-progress-wrapper" id="upload-progress-wrapper" style="display: none;">
+          <div class="progress-bar-container">
+            <div class="progress-bar" id="upload-progress-bar" style="width: 0%;"></div>
+          </div>
+          <span class="progress-text" id="upload-progress-text">Uploading...</span>
+        </div>
+
+        <div class="modal-feedback" id="upload-feedback" style="display: none;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-cancel-upload">Cancel</button>
+        <button class="btn btn-primary" id="btn-submit-upload" disabled>Upload Dataset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Run Pipeline Confirmation Modal -->
+  <div class="modal-overlay" id="pipeline-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Execute Universal Pipeline</h3>
+        <button class="btn-close" id="btn-close-pipeline-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-instruction">This will execute all configured pipeline stages end-to-end: Foundation &rarr; Ingestion &rarr; Incremental Evaluation &rarr; Profiling &rarr; Transformation &rarr; Validation &rarr; PostgreSQL Database &rarr; SQL Analytics &rarr; Power BI Integration &rarr; Observability.</p>
+        
+        <div class="checkbox-option">
+          <label class="checkbox-label">
+            <input type="checkbox" id="chk-reset-checkpoints" class="form-checkbox">
+            <span><strong>Reset Checkpoints:</strong> Force fresh processing of all datasets in <code>data/raw/</code> without skipping unchanged files.</span>
+          </label>
+        </div>
+
+        <div class="pipeline-running-status" id="pipeline-modal-status" style="display: none;">
+          <div class="spinner"></div>
+          <span id="pipeline-modal-status-text">Pipeline running... Please wait.</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-cancel-run">Cancel</button>
+        <button class="btn btn-primary" id="btn-confirm-run">Run Pipeline Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data Quality & Validation Details Modal -->
+  <div class="modal-overlay" id="quality-modal" style="display: none;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Data Quality & Validation Audit</h3>
+        <button class="btn-close" id="btn-close-quality-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="quality-modal-content">
+        <!-- Rendered dynamically via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-close-quality-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Power BI Spec Inspector Modal -->
+  <div class="modal-overlay" id="powerbi-modal" style="display: none;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3 class="modal-title">Power BI Integration & Semantic Model</h3>
+        <button class="btn-close" id="btn-close-powerbi-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="powerbi-modal-content">
+        <!-- Rendered dynamically via JS -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="btn-close-powerbi-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-left">
+      <span>Universal Data Engineering Pipeline • Production Web Dashboard</span>
+    </div>
+    <div class="footer-right">
+      <span class="pbi-disclaimer-tag">Power BI Semantic Specification Engine • Not a .pbix binary</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/dashboard.js"></script>
+</body>
+</html>

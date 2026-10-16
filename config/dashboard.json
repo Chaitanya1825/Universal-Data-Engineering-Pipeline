@@ -1,0 +1,13 @@
+{
+  "host": "127.0.0.1",
+  "port": 5000,
+  "debug": false,
+  "upload_folder": "data/raw",
+  "allowed_extensions": [
+    "csv",
+    "xlsx",
+    "json"
+  ],
+  "max_content_length_mb": 50,
+  "theme": "dark"
+}

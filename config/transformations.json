@@ -1,0 +1,18 @@
+{
+  "normalize_column_names": true,
+  "strip_whitespace": true,
+  "string_case": "none",
+  "remove_duplicates": true,
+  "duplicate_subset": null,
+  "handle_missing_values": true,
+  "missing_value_strategies": {
+    "numeric": "median",
+    "categorical": "mode",
+    "text": "constant",
+    "text_constant": "Unknown",
+    "boolean": "mode",
+    "datetime": "ffill"
+  },
+  "convert_types": true,
+  "standardize_dates": true
+}

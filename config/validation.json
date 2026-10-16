@@ -1,0 +1,15 @@
+{
+  "default": {
+    "required_columns": [],
+    "unique_columns": [],
+    "range_rules": {},
+    "regex_rules": {},
+    "type_rules": {},
+    "dataset_rules": {
+      "min_row_count": 0,
+      "max_missing_percentage": 100.0,
+      "allow_unexpected_columns": true
+    }
+  },
+  "datasets": {}
+}

@@ -1,0 +1,17 @@
+{
+  "enabled_stages": [
+    "foundation",
+    "ingestion",
+    "incremental",
+    "profiling",
+    "transformation",
+    "validation",
+    "database",
+    "analytics",
+    "powerbi"
+  ],
+  "fail_fast": false,
+  "continue_on_database_unavailable": true,
+  "generate_reports": true,
+  "logging_enabled": true
+}

@@ -1,0 +1,81 @@
+// ==============================================================================
+// REUSABLE GENERIC DAX MEASURES LIBRARY
+// Universal Data Engineering Pipeline - Stage 10
+//
+// INSTRUCTIONS:
+// Replace 'TableName' with your target table name.
+// Replace [MetricColumn], [DimensionColumn], or [IdentifierColumn] with your
+// discovered column names as identified in powerbi/semantic_model.json.
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. ROW AND RECORD COUNTS
+// ------------------------------------------------------------------------------
+
+// Total number of rows in the table
+Total Rows = 
+COUNTROWS('TableName')
+
+// Count of non-blank values in a specific column
+Count Non-Blank = 
+COUNTA('TableName'[ColumnName])
+
+// Count of blank / missing values in a specific column
+Count Blank = 
+COUNTBLANK('TableName'[ColumnName])
+
+// Count of distinct unique identifiers
+Distinct Count = 
+DISTINCTCOUNT('TableName'[IdentifierColumn])
+
+
+// ------------------------------------------------------------------------------
+// 2. BASIC NUMERIC AGGREGATIONS
+// ------------------------------------------------------------------------------
+
+// Total cumulative sum of a numeric metric
+Total Metric = 
+SUM('TableName'[MetricColumn])
+
+// Arithmetic mean of a numeric metric
+Average Metric = 
+AVERAGE('TableName'[MetricColumn])
+
+// Minimum observed value of a numeric metric
+Minimum Metric = 
+MIN('TableName'[MetricColumn])
+
+// Maximum observed value of a numeric metric
+Maximum Metric = 
+MAX('TableName'[MetricColumn])
+
+// Median value of a numeric metric
+Median Metric = 
+MEDIAN('TableName'[MetricColumn])
+
+// Standard deviation (sample)
+StdDev Metric = 
+STDEV.S('TableName'[MetricColumn])
+
+
+// ------------------------------------------------------------------------------
+// 3. SAFE RATIOS AND PERCENTAGES
+// ------------------------------------------------------------------------------
+
+// Safe division of two measures (prevents divide-by-zero errors)
+Metric Ratio = 
+DIVIDE([Total Metric A], [Total Metric B], 0)
+
+// Percentage contribution of current filter selection to grand total
+Percentage of Total = 
+VAR CurrentSelection = [Total Metric]
+VAR GrandTotal = CALCULATE([Total Metric], ALLSELECTED('TableName'))
+RETURN
+DIVIDE(CurrentSelection, GrandTotal, 0)
+
+// Dimension coverage ratio (distinct active vs total)
+Dimension Coverage Ratio = 
+VAR ActiveCount = DISTINCTCOUNT('TableName'[IdentifierColumn])
+VAR TotalCount = CALCULATE(DISTINCTCOUNT('TableName'[IdentifierColumn]), ALL('TableName'))
+RETURN
+DIVIDE(ActiveCount, TotalCount, 0)

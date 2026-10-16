@@ -1,0 +1,102 @@
+// Auto-Generated Concrete DAX Measures
+// Generated at: 2026-10-15T13:58:17.495120
+// ==============================================================================
+
+// Table: records
+Total records Rows = COUNTROWS('records')
+
+// Table: mutating
+Total mutating Rows = COUNTROWS('mutating')
+
+// Table: mutating
+Total Y = SUM('mutating'[y])
+
+// Table: mutating
+Avg Y = AVERAGE('mutating'[y])
+
+// Table: fresh
+Total fresh Rows = COUNTROWS('fresh')
+
+// Table: lifecycle_dataset
+Total lifecycle_dataset Rows = COUNTROWS('lifecycle_dataset')
+
+// Table: lifecycle_dataset
+Distinct Id Count = DISTINCTCOUNT('lifecycle_dataset'[id])
+
+// Table: sample_records
+Total sample_records Rows = COUNTROWS('sample_records')
+
+// Table: sample_records
+Distinct Id Count = DISTINCTCOUNT('sample_records'[id])
+
+// Table: items
+Total items Rows = COUNTROWS('items')
+
+// Table: items
+Total Val = SUM('items'[val])
+
+// Table: items
+Avg Val = AVERAGE('items'[val])
+
+// Table: sample_employees
+Total sample_employees Rows = COUNTROWS('sample_employees')
+
+// Table: sample_employees
+Distinct Emp Id Count = DISTINCTCOUNT('sample_employees'[emp_id])
+
+// Table: sample_employees
+Total Salary = SUM('sample_employees'[salary])
+
+// Table: sample_employees
+Avg Salary = AVERAGE('sample_employees'[salary])
+
+// Table: sample_sales
+Total sample_sales Rows = COUNTROWS('sample_sales')
+
+// Table: sample_sales
+Distinct Transaction Id Count = DISTINCTCOUNT('sample_sales'[transaction_id])
+
+// Table: sample_sales
+Distinct Store Id Count = DISTINCTCOUNT('sample_sales'[store_id])
+
+// Table: sample_sales
+Total Units Sold = SUM('sample_sales'[units_sold])
+
+// Table: sample_sales
+Avg Units Sold = AVERAGE('sample_sales'[units_sold])
+
+// Table: sample_sales
+Total Unit Price = SUM('sample_sales'[unit_price])
+
+// Table: sample_sales
+Avg Unit Price = AVERAGE('sample_sales'[unit_price])
+
+// Table: sample_students
+Total sample_students Rows = COUNTROWS('sample_students')
+
+// Table: sample_students
+Distinct Student Id Count = DISTINCTCOUNT('sample_students'[student_id])
+
+// Table: sample_students
+Total Gpa = SUM('sample_students'[gpa])
+
+// Table: sample_students
+Avg Gpa = AVERAGE('sample_students'[gpa])
+
+// Table: sample_students
+Total Enrollment Year = SUM('sample_students'[enrollment_year])
+
+// Table: sample_students
+Avg Enrollment Year = AVERAGE('sample_students'[enrollment_year])
+
+// Table: telemetry_test
+Total telemetry_test Rows = COUNTROWS('telemetry_test')
+
+// Table: telemetry_test
+Distinct Device Id Count = DISTINCTCOUNT('telemetry_test'[device_id])
+
+// Table: telemetry_test
+Total Temperature = SUM('telemetry_test'[temperature])
+
+// Table: telemetry_test
+Avg Temperature = AVERAGE('telemetry_test'[temperature])

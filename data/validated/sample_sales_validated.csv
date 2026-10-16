@@ -1,0 +1,6 @@
+transaction_id,store_id,product_category,units_sold,unit_price,sale_date,region
+TX1001,ST01,Electronics,2,499.99,2026-03-01,North
+TX1002,ST02,Furniture,1,150.0,2026-03-01,South
+TX1003,ST01,Stationery,15,3.5,2026-03-02,North
+TX1004,ST03,Electronics,1,899.0,2026-03-02,West
+TX1005,ST02,Apparel,4,29.99,2026-03-03,East

@@ -1,0 +1,576 @@
+{
+  "dashboard_title": "Universal Analytical Dashboard",
+  "status": "SUCCESS",
+  "layout": "4-zone-executive",
+  "total_recommendations": 30,
+  "recommendations": [
+    {
+      "visualization_id": "table_records_records",
+      "visualization_type": "table",
+      "title": "Records Detailed Records",
+      "target_table": "records",
+      "fields": {
+        "columns": [
+          "val"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "val"
+      ]
+    },
+    {
+      "visualization_id": "kpi_mutating_y",
+      "visualization_type": "kpi_card",
+      "title": "Total Y",
+      "target_table": "mutating",
+      "fields": {
+        "measure": [
+          "y"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated y for mutating.",
+      "confidence": 0.95,
+      "required_columns": [
+        "y"
+      ]
+    },
+    {
+      "visualization_id": "table_mutating_records",
+      "visualization_type": "table",
+      "title": "Mutating Detailed Records",
+      "target_table": "mutating",
+      "fields": {
+        "columns": [
+          "y"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "y"
+      ]
+    },
+    {
+      "visualization_id": "table_fresh_records",
+      "visualization_type": "table",
+      "title": "Fresh Detailed Records",
+      "target_table": "fresh",
+      "fields": {
+        "columns": [
+          "val"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "val"
+      ]
+    },
+    {
+      "visualization_id": "table_lifecycle_dataset_records",
+      "visualization_type": "table",
+      "title": "Lifecycle Dataset Detailed Records",
+      "target_table": "lifecycle_dataset",
+      "fields": {
+        "columns": [
+          "id",
+          "val"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "id",
+        "val"
+      ]
+    },
+    {
+      "visualization_id": "table_sample_records_records",
+      "visualization_type": "table",
+      "title": "Sample Records Detailed Records",
+      "target_table": "sample_records",
+      "fields": {
+        "columns": [
+          "id",
+          "value"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "id",
+        "value"
+      ]
+    },
+    {
+      "visualization_id": "kpi_items_val",
+      "visualization_type": "kpi_card",
+      "title": "Total Val",
+      "target_table": "items",
+      "fields": {
+        "measure": [
+          "val"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated val for items.",
+      "confidence": 0.95,
+      "required_columns": [
+        "val"
+      ]
+    },
+    {
+      "visualization_id": "table_items_records",
+      "visualization_type": "table",
+      "title": "Items Detailed Records",
+      "target_table": "items",
+      "fields": {
+        "columns": [
+          "val"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "val"
+      ]
+    },
+    {
+      "visualization_id": "kpi_sample_employees_salary",
+      "visualization_type": "kpi_card",
+      "title": "Total Salary",
+      "target_table": "sample_employees",
+      "fields": {
+        "measure": [
+          "salary"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated salary for sample_employees.",
+      "confidence": 0.95,
+      "required_columns": [
+        "salary"
+      ]
+    },
+    {
+      "visualization_id": "dist_sample_employees_name_salary",
+      "visualization_type": "column_chart",
+      "title": "Salary by Name",
+      "target_table": "sample_employees",
+      "fields": {
+        "category": [
+          "name"
+        ],
+        "values": [
+          "salary"
+        ]
+      },
+      "rationale": "Categorical bar comparison illustrating salary distributed across name.",
+      "confidence": 0.88,
+      "required_columns": [
+        "name",
+        "salary"
+      ]
+    },
+    {
+      "visualization_id": "matrix_sample_employees_name_department",
+      "visualization_type": "matrix",
+      "title": "Salary Matrix (name \u00d7 department)",
+      "target_table": "sample_employees",
+      "fields": {
+        "rows": [
+          "name"
+        ],
+        "columns": [
+          "department"
+        ],
+        "values": [
+          "salary"
+        ]
+      },
+      "rationale": "Cross-tabulated matrix visual analyzing salary by dual categories name and department.",
+      "confidence": 0.8,
+      "required_columns": [
+        "name",
+        "department",
+        "salary"
+      ]
+    },
+    {
+      "visualization_id": "table_sample_employees_records",
+      "visualization_type": "table",
+      "title": "Sample Employees Detailed Records",
+      "target_table": "sample_employees",
+      "fields": {
+        "columns": [
+          "emp_id",
+          "name",
+          "department",
+          "salary"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "emp_id",
+        "name",
+        "department",
+        "salary"
+      ]
+    },
+    {
+      "visualization_id": "kpi_sample_sales_units_sold",
+      "visualization_type": "kpi_card",
+      "title": "Total Units Sold",
+      "target_table": "sample_sales",
+      "fields": {
+        "measure": [
+          "units_sold"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated units_sold for sample_sales.",
+      "confidence": 0.95,
+      "required_columns": [
+        "units_sold"
+      ]
+    },
+    {
+      "visualization_id": "kpi_sample_sales_unit_price",
+      "visualization_type": "kpi_card",
+      "title": "Total Unit Price",
+      "target_table": "sample_sales",
+      "fields": {
+        "measure": [
+          "unit_price"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated unit_price for sample_sales.",
+      "confidence": 0.95,
+      "required_columns": [
+        "unit_price"
+      ]
+    },
+    {
+      "visualization_id": "trend_sample_sales_sale_date_units_sold",
+      "visualization_type": "line_chart",
+      "title": "Units Sold Trend over Sale Date",
+      "target_table": "sample_sales",
+      "fields": {
+        "axis": [
+          "sale_date"
+        ],
+        "values": [
+          "units_sold"
+        ]
+      },
+      "rationale": "Chronological line trend tracking units_sold along continuous timeline sale_date.",
+      "confidence": 0.9,
+      "required_columns": [
+        "sale_date",
+        "units_sold"
+      ]
+    },
+    {
+      "visualization_id": "trend_sample_sales_sale_date_unit_price",
+      "visualization_type": "line_chart",
+      "title": "Unit Price Trend over Sale Date",
+      "target_table": "sample_sales",
+      "fields": {
+        "axis": [
+          "sale_date"
+        ],
+        "values": [
+          "unit_price"
+        ]
+      },
+      "rationale": "Chronological line trend tracking unit_price along continuous timeline sale_date.",
+      "confidence": 0.9,
+      "required_columns": [
+        "sale_date",
+        "unit_price"
+      ]
+    },
+    {
+      "visualization_id": "dist_sample_sales_product_category_units_sold",
+      "visualization_type": "column_chart",
+      "title": "Units Sold by Product Category",
+      "target_table": "sample_sales",
+      "fields": {
+        "category": [
+          "product_category"
+        ],
+        "values": [
+          "units_sold"
+        ]
+      },
+      "rationale": "Categorical bar comparison illustrating units_sold distributed across product_category.",
+      "confidence": 0.88,
+      "required_columns": [
+        "product_category",
+        "units_sold"
+      ]
+    },
+    {
+      "visualization_id": "matrix_sample_sales_product_category_region",
+      "visualization_type": "matrix",
+      "title": "Units Sold Matrix (product_category \u00d7 region)",
+      "target_table": "sample_sales",
+      "fields": {
+        "rows": [
+          "product_category"
+        ],
+        "columns": [
+          "region"
+        ],
+        "values": [
+          "units_sold"
+        ]
+      },
+      "rationale": "Cross-tabulated matrix visual analyzing units_sold by dual categories product_category and region.",
+      "confidence": 0.8,
+      "required_columns": [
+        "product_category",
+        "region",
+        "units_sold"
+      ]
+    },
+    {
+      "visualization_id": "slicer_sample_sales_sale_date",
+      "visualization_type": "date_slicer",
+      "title": "Date Filter (Sale Date)",
+      "target_table": "sample_sales",
+      "fields": {
+        "date": [
+          "sale_date"
+        ]
+      },
+      "rationale": "Interactive date slider allowing end-users to dynamically filter report pages by sale_date.",
+      "confidence": 0.92,
+      "required_columns": [
+        "sale_date"
+      ]
+    },
+    {
+      "visualization_id": "table_sample_sales_records",
+      "visualization_type": "table",
+      "title": "Sample Sales Detailed Records",
+      "target_table": "sample_sales",
+      "fields": {
+        "columns": [
+          "transaction_id",
+          "store_id",
+          "product_category",
+          "region",
+          "units_sold",
+          "unit_price",
+          "sale_date"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "transaction_id",
+        "store_id",
+        "product_category",
+        "region",
+        "units_sold",
+        "unit_price",
+        "sale_date"
+      ]
+    },
+    {
+      "visualization_id": "kpi_sample_students_gpa",
+      "visualization_type": "kpi_card",
+      "title": "Total Gpa",
+      "target_table": "sample_students",
+      "fields": {
+        "measure": [
+          "gpa"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated gpa for sample_students.",
+      "confidence": 0.95,
+      "required_columns": [
+        "gpa"
+      ]
+    },
+    {
+      "visualization_id": "kpi_sample_students_enrollment_year",
+      "visualization_type": "kpi_card",
+      "title": "Total Enrollment Year",
+      "target_table": "sample_students",
+      "fields": {
+        "measure": [
+          "enrollment_year"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated enrollment_year for sample_students.",
+      "confidence": 0.95,
+      "required_columns": [
+        "enrollment_year"
+      ]
+    },
+    {
+      "visualization_id": "dist_sample_students_full_name_gpa",
+      "visualization_type": "column_chart",
+      "title": "Gpa by Full Name",
+      "target_table": "sample_students",
+      "fields": {
+        "category": [
+          "full_name"
+        ],
+        "values": [
+          "gpa"
+        ]
+      },
+      "rationale": "Categorical bar comparison illustrating gpa distributed across full_name.",
+      "confidence": 0.88,
+      "required_columns": [
+        "full_name",
+        "gpa"
+      ]
+    },
+    {
+      "visualization_id": "matrix_sample_students_full_name_major",
+      "visualization_type": "matrix",
+      "title": "Gpa Matrix (full_name \u00d7 major)",
+      "target_table": "sample_students",
+      "fields": {
+        "rows": [
+          "full_name"
+        ],
+        "columns": [
+          "major"
+        ],
+        "values": [
+          "gpa"
+        ]
+      },
+      "rationale": "Cross-tabulated matrix visual analyzing gpa by dual categories full_name and major.",
+      "confidence": 0.8,
+      "required_columns": [
+        "full_name",
+        "major",
+        "gpa"
+      ]
+    },
+    {
+      "visualization_id": "table_sample_students_records",
+      "visualization_type": "table",
+      "title": "Sample Students Detailed Records",
+      "target_table": "sample_students",
+      "fields": {
+        "columns": [
+          "student_id",
+          "full_name",
+          "major",
+          "gpa",
+          "enrollment_year"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "student_id",
+        "full_name",
+        "major",
+        "gpa",
+        "enrollment_year"
+      ]
+    },
+    {
+      "visualization_id": "kpi_telemetry_test_temperature",
+      "visualization_type": "kpi_card",
+      "title": "Total Temperature",
+      "target_table": "telemetry_test",
+      "fields": {
+        "measure": [
+          "temperature"
+        ]
+      },
+      "rationale": "Executive KPI snapshot displaying total aggregated temperature for telemetry_test.",
+      "confidence": 0.95,
+      "required_columns": [
+        "temperature"
+      ]
+    },
+    {
+      "visualization_id": "trend_telemetry_test_recorded_date_temperature",
+      "visualization_type": "line_chart",
+      "title": "Temperature Trend over Recorded Date",
+      "target_table": "telemetry_test",
+      "fields": {
+        "axis": [
+          "recorded_date"
+        ],
+        "values": [
+          "temperature"
+        ]
+      },
+      "rationale": "Chronological line trend tracking temperature along continuous timeline recorded_date.",
+      "confidence": 0.9,
+      "required_columns": [
+        "recorded_date",
+        "temperature"
+      ]
+    },
+    {
+      "visualization_id": "dist_telemetry_test_device_type_temperature",
+      "visualization_type": "column_chart",
+      "title": "Temperature by Device Type",
+      "target_table": "telemetry_test",
+      "fields": {
+        "category": [
+          "device_type"
+        ],
+        "values": [
+          "temperature"
+        ]
+      },
+      "rationale": "Categorical bar comparison illustrating temperature distributed across device_type.",
+      "confidence": 0.88,
+      "required_columns": [
+        "device_type",
+        "temperature"
+      ]
+    },
+    {
+      "visualization_id": "slicer_telemetry_test_recorded_date",
+      "visualization_type": "date_slicer",
+      "title": "Date Filter (Recorded Date)",
+      "target_table": "telemetry_test",
+      "fields": {
+        "date": [
+          "recorded_date"
+        ]
+      },
+      "rationale": "Interactive date slider allowing end-users to dynamically filter report pages by recorded_date.",
+      "confidence": 0.92,
+      "required_columns": [
+        "recorded_date"
+      ]
+    },
+    {
+      "visualization_id": "table_telemetry_test_records",
+      "visualization_type": "table",
+      "title": "Telemetry Test Detailed Records",
+      "target_table": "telemetry_test",
+      "fields": {
+        "columns": [
+          "device_id",
+          "device_type",
+          "temperature",
+          "recorded_date"
+        ]
+      },
+      "rationale": "Granular audit table supporting sorting, multi-column drillthrough, and raw data inspection.",
+      "confidence": 0.85,
+      "required_columns": [
+        "device_id",
+        "device_type",
+        "temperature",
+        "recorded_date"
+      ]
+    }
+  ]
+}

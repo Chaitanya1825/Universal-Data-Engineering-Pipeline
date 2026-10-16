@@ -1,0 +1,28 @@
+{
+  "enabled": true,
+  "default_limit": 1000,
+  "max_limit": 10000,
+  "export_formats": [
+    "json",
+    "csv"
+  ],
+  "allowed_aggregations": [
+    "COUNT",
+    "SUM",
+    "AVG",
+    "MIN",
+    "MAX"
+  ],
+  "allowed_grains": [
+    "day",
+    "week",
+    "month",
+    "quarter",
+    "year"
+  ],
+  "allowed_ranking_methods": [
+    "RANK",
+    "DENSE_RANK",
+    "ROW_NUMBER"
+  ]
+}

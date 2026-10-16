@@ -1,0 +1,35 @@
+# ==============================================================================
+# Git Attributes - Line Ending & Binary Normalization
+# ==============================================================================
+
+# Default to auto normalization with LF in repository
+* text=auto eol=lf
+
+# Explicit Text Files
+*.py text eol=lf
+*.json text eol=lf
+*.sql text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.csv text eol=lf
+*.dax text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+*.svg text eol=lf
+
+# Explicit Binary Files (No line ending conversion)
+*.xlsx binary
+*.xls binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pbix binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary

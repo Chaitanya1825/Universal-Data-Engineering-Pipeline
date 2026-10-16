@@ -1,0 +1,727 @@
+{
+  "model_type": "dynamic",
+  "status": "SUCCESS",
+  "source": {
+    "type": "postgresql",
+    "schema": "public",
+    "connection_mode": "import"
+  },
+  "tables": [
+    {
+      "table_name": "records",
+      "schema": "public",
+      "row_count": 2,
+      "table_archetype": "DIMENSION",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false,
+          "role": "BOOLEAN_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "val",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        }
+      ]
+    },
+    {
+      "table_name": "mutating",
+      "schema": "public",
+      "row_count": 3,
+      "table_archetype": "TABULAR",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "x",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false,
+          "role": "BOOLEAN_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "y",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        }
+      ]
+    },
+    {
+      "table_name": "fresh",
+      "schema": "public",
+      "row_count": 3,
+      "table_archetype": "DIMENSION",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false,
+          "role": "BOOLEAN_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "val",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        }
+      ]
+    },
+    {
+      "table_name": "lifecycle_dataset",
+      "schema": "public",
+      "row_count": 15,
+      "table_archetype": "DIMENSION",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "IDENTIFIER",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "val",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        }
+      ]
+    },
+    {
+      "table_name": "sample_records",
+      "schema": "public",
+      "row_count": 12,
+      "table_archetype": "DIMENSION",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "id",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "IDENTIFIER",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "value",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        }
+      ]
+    },
+    {
+      "table_name": "items",
+      "schema": "public",
+      "row_count": 3,
+      "table_archetype": "TABULAR",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "item_id",
+          "data_type": "BOOLEAN",
+          "nullable": true,
+          "primary_key": false,
+          "role": "BOOLEAN_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "val",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        }
+      ]
+    },
+    {
+      "table_name": "sample_employees",
+      "schema": "public",
+      "row_count": 15,
+      "table_archetype": "FACT",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "emp_id",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "IDENTIFIER",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "name",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "department",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "salary",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        },
+        {
+          "name": "city",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        }
+      ]
+    },
+    {
+      "table_name": "sample_sales",
+      "schema": "public",
+      "row_count": 15,
+      "table_archetype": "FACT",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "transaction_id",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "IDENTIFIER",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "store_id",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "IDENTIFIER",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "product_category",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "units_sold",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        },
+        {
+          "name": "unit_price",
+          "data_type": "DOUBLE PRECISION",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        },
+        {
+          "name": "sale_date",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "primary_key": false,
+          "role": "DATETIME_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "region",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        }
+      ]
+    },
+    {
+      "table_name": "sample_students",
+      "schema": "public",
+      "row_count": 15,
+      "table_archetype": "FACT",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "student_id",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "IDENTIFIER",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "full_name",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "major",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "gpa",
+          "data_type": "DOUBLE PRECISION",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        },
+        {
+          "name": "enrollment_year",
+          "data_type": "BIGINT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        }
+      ]
+    },
+    {
+      "table_name": "telemetry_test",
+      "schema": "public",
+      "row_count": 3,
+      "table_archetype": "FACT",
+      "primary_keys": [],
+      "columns": [
+        {
+          "name": "device_id",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "IDENTIFIER",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "device_type",
+          "data_type": "TEXT",
+          "nullable": true,
+          "primary_key": false,
+          "role": "CATEGORICAL_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        },
+        {
+          "name": "temperature",
+          "data_type": "DOUBLE PRECISION",
+          "nullable": true,
+          "primary_key": false,
+          "role": "NUMERIC_METRIC",
+          "candidate_measure": true,
+          "candidate_dimension": false
+        },
+        {
+          "name": "recorded_date",
+          "data_type": "TIMESTAMP",
+          "nullable": true,
+          "primary_key": false,
+          "role": "DATETIME_DIMENSION",
+          "candidate_measure": false,
+          "candidate_dimension": true
+        }
+      ]
+    }
+  ],
+  "relationships": [],
+  "relationship_note": "No explicit PostgreSQL foreign-key relationships discovered.",
+  "measures": [
+    {
+      "name": "Total records Rows",
+      "dax": "Total records Rows = COUNTROWS('records')",
+      "table": "records",
+      "type": "row_count"
+    },
+    {
+      "name": "Total mutating Rows",
+      "dax": "Total mutating Rows = COUNTROWS('mutating')",
+      "table": "mutating",
+      "type": "row_count"
+    },
+    {
+      "name": "Total Y",
+      "dax": "Total Y = SUM('mutating'[y])",
+      "table": "mutating",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Y",
+      "dax": "Avg Y = AVERAGE('mutating'[y])",
+      "table": "mutating",
+      "type": "average"
+    },
+    {
+      "name": "Total fresh Rows",
+      "dax": "Total fresh Rows = COUNTROWS('fresh')",
+      "table": "fresh",
+      "type": "row_count"
+    },
+    {
+      "name": "Total lifecycle_dataset Rows",
+      "dax": "Total lifecycle_dataset Rows = COUNTROWS('lifecycle_dataset')",
+      "table": "lifecycle_dataset",
+      "type": "row_count"
+    },
+    {
+      "name": "Distinct Id Count",
+      "dax": "Distinct Id Count = DISTINCTCOUNT('lifecycle_dataset'[id])",
+      "table": "lifecycle_dataset",
+      "type": "distinct_count"
+    },
+    {
+      "name": "Total sample_records Rows",
+      "dax": "Total sample_records Rows = COUNTROWS('sample_records')",
+      "table": "sample_records",
+      "type": "row_count"
+    },
+    {
+      "name": "Distinct Id Count",
+      "dax": "Distinct Id Count = DISTINCTCOUNT('sample_records'[id])",
+      "table": "sample_records",
+      "type": "distinct_count"
+    },
+    {
+      "name": "Total items Rows",
+      "dax": "Total items Rows = COUNTROWS('items')",
+      "table": "items",
+      "type": "row_count"
+    },
+    {
+      "name": "Total Val",
+      "dax": "Total Val = SUM('items'[val])",
+      "table": "items",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Val",
+      "dax": "Avg Val = AVERAGE('items'[val])",
+      "table": "items",
+      "type": "average"
+    },
+    {
+      "name": "Total sample_employees Rows",
+      "dax": "Total sample_employees Rows = COUNTROWS('sample_employees')",
+      "table": "sample_employees",
+      "type": "row_count"
+    },
+    {
+      "name": "Distinct Emp Id Count",
+      "dax": "Distinct Emp Id Count = DISTINCTCOUNT('sample_employees'[emp_id])",
+      "table": "sample_employees",
+      "type": "distinct_count"
+    },
+    {
+      "name": "Total Salary",
+      "dax": "Total Salary = SUM('sample_employees'[salary])",
+      "table": "sample_employees",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Salary",
+      "dax": "Avg Salary = AVERAGE('sample_employees'[salary])",
+      "table": "sample_employees",
+      "type": "average"
+    },
+    {
+      "name": "Total sample_sales Rows",
+      "dax": "Total sample_sales Rows = COUNTROWS('sample_sales')",
+      "table": "sample_sales",
+      "type": "row_count"
+    },
+    {
+      "name": "Distinct Transaction Id Count",
+      "dax": "Distinct Transaction Id Count = DISTINCTCOUNT('sample_sales'[transaction_id])",
+      "table": "sample_sales",
+      "type": "distinct_count"
+    },
+    {
+      "name": "Distinct Store Id Count",
+      "dax": "Distinct Store Id Count = DISTINCTCOUNT('sample_sales'[store_id])",
+      "table": "sample_sales",
+      "type": "distinct_count"
+    },
+    {
+      "name": "Total Units Sold",
+      "dax": "Total Units Sold = SUM('sample_sales'[units_sold])",
+      "table": "sample_sales",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Units Sold",
+      "dax": "Avg Units Sold = AVERAGE('sample_sales'[units_sold])",
+      "table": "sample_sales",
+      "type": "average"
+    },
+    {
+      "name": "Total Unit Price",
+      "dax": "Total Unit Price = SUM('sample_sales'[unit_price])",
+      "table": "sample_sales",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Unit Price",
+      "dax": "Avg Unit Price = AVERAGE('sample_sales'[unit_price])",
+      "table": "sample_sales",
+      "type": "average"
+    },
+    {
+      "name": "Total sample_students Rows",
+      "dax": "Total sample_students Rows = COUNTROWS('sample_students')",
+      "table": "sample_students",
+      "type": "row_count"
+    },
+    {
+      "name": "Distinct Student Id Count",
+      "dax": "Distinct Student Id Count = DISTINCTCOUNT('sample_students'[student_id])",
+      "table": "sample_students",
+      "type": "distinct_count"
+    },
+    {
+      "name": "Total Gpa",
+      "dax": "Total Gpa = SUM('sample_students'[gpa])",
+      "table": "sample_students",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Gpa",
+      "dax": "Avg Gpa = AVERAGE('sample_students'[gpa])",
+      "table": "sample_students",
+      "type": "average"
+    },
+    {
+      "name": "Total Enrollment Year",
+      "dax": "Total Enrollment Year = SUM('sample_students'[enrollment_year])",
+      "table": "sample_students",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Enrollment Year",
+      "dax": "Avg Enrollment Year = AVERAGE('sample_students'[enrollment_year])",
+      "table": "sample_students",
+      "type": "average"
+    },
+    {
+      "name": "Total telemetry_test Rows",
+      "dax": "Total telemetry_test Rows = COUNTROWS('telemetry_test')",
+      "table": "telemetry_test",
+      "type": "row_count"
+    },
+    {
+      "name": "Distinct Device Id Count",
+      "dax": "Distinct Device Id Count = DISTINCTCOUNT('telemetry_test'[device_id])",
+      "table": "telemetry_test",
+      "type": "distinct_count"
+    },
+    {
+      "name": "Total Temperature",
+      "dax": "Total Temperature = SUM('telemetry_test'[temperature])",
+      "table": "telemetry_test",
+      "type": "sum"
+    },
+    {
+      "name": "Avg Temperature",
+      "dax": "Avg Temperature = AVERAGE('telemetry_test'[temperature])",
+      "table": "telemetry_test",
+      "type": "average"
+    }
+  ],
+  "dimensions": [
+    {
+      "table": "records",
+      "column": "id",
+      "role": "BOOLEAN_DIMENSION"
+    },
+    {
+      "table": "records",
+      "column": "val",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "mutating",
+      "column": "x",
+      "role": "BOOLEAN_DIMENSION"
+    },
+    {
+      "table": "fresh",
+      "column": "id",
+      "role": "BOOLEAN_DIMENSION"
+    },
+    {
+      "table": "fresh",
+      "column": "val",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "lifecycle_dataset",
+      "column": "id",
+      "role": "IDENTIFIER"
+    },
+    {
+      "table": "lifecycle_dataset",
+      "column": "val",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "sample_records",
+      "column": "id",
+      "role": "IDENTIFIER"
+    },
+    {
+      "table": "sample_records",
+      "column": "value",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "items",
+      "column": "item_id",
+      "role": "BOOLEAN_DIMENSION"
+    },
+    {
+      "table": "sample_employees",
+      "column": "emp_id",
+      "role": "IDENTIFIER"
+    },
+    {
+      "table": "sample_employees",
+      "column": "name",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "sample_employees",
+      "column": "department",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "sample_employees",
+      "column": "city",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "sample_sales",
+      "column": "transaction_id",
+      "role": "IDENTIFIER"
+    },
+    {
+      "table": "sample_sales",
+      "column": "store_id",
+      "role": "IDENTIFIER"
+    },
+    {
+      "table": "sample_sales",
+      "column": "product_category",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "sample_sales",
+      "column": "sale_date",
+      "role": "DATETIME_DIMENSION"
+    },
+    {
+      "table": "sample_sales",
+      "column": "region",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "sample_students",
+      "column": "student_id",
+      "role": "IDENTIFIER"
+    },
+    {
+      "table": "sample_students",
+      "column": "full_name",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "sample_students",
+      "column": "major",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "telemetry_test",
+      "column": "device_id",
+      "role": "IDENTIFIER"
+    },
+    {
+      "table": "telemetry_test",
+      "column": "device_type",
+      "role": "CATEGORICAL_DIMENSION"
+    },
+    {
+      "table": "telemetry_test",
+      "column": "recorded_date",
+      "role": "DATETIME_DIMENSION"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "if_exists": "append",
+  "schema": "public",
+  "create_tables": true,
+  "auto_primary_key": false,
+  "batch_size": 1000
+}

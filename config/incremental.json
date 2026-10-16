@@ -1,0 +1,12 @@
+{
+  "enabled": true,
+  "hash_algorithm": "sha256",
+  "skip_unchanged_files": true,
+  "reprocess_changed_files": true,
+  "checkpoint_file": "state/checkpoints.json",
+  "track_record_changes": true,
+  "delete_missing_records": false,
+  "record_keys": {
+    "sample_sales.csv": ["transaction_id"]
+  }
+}

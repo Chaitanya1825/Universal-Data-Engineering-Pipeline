@@ -1,0 +1,96 @@
+// ==============================================================================
+// REUSABLE TIME INTELLIGENCE DAX MEASURES LIBRARY
+// Universal Data Engineering Pipeline - Stage 10
+//
+// PREREQUISITES:
+// 1. A continuous Date/Calendar dimension table (e.g., 'DateTable') marked as a Date Table.
+// 2. An active 1-to-Many relationship between 'DateTable'[Date] and your Fact table's
+//    datetime column (e.g., 'TableName'[DateColumn]).
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// 1. PERIOD-TO-DATE CALCULATIONS
+// ------------------------------------------------------------------------------
+
+// Year-to-Date total for metric
+Metric YTD = 
+TOTALYTD(
+    [Total Metric],
+    'DateTable'[Date]
+)
+
+// Month-to-Date total for metric
+Metric MTD = 
+TOTALMTD(
+    [Total Metric],
+    'DateTable'[Date]
+)
+
+// Quarter-to-Date total for metric
+Metric QTD = 
+TOTALQTD(
+    [Total Metric],
+    'DateTable'[Date]
+)
+
+
+// ------------------------------------------------------------------------------
+// 2. PRIOR PERIOD COMPARISONS (YEAR-OVER-YEAR & PERIOD-OVER-PERIOD)
+// ------------------------------------------------------------------------------
+
+// Same metric in the previous year
+Metric Prior Year = 
+CALCULATE(
+    [Total Metric],
+    SAMEPERIODLASTYEAR('DateTable'[Date])
+)
+
+// Same metric in the previous month
+Metric Prior Month = 
+CALCULATE(
+    [Total Metric],
+    DATEADD('DateTable'[Date], -1, MONTH)
+)
+
+// Absolute variance vs. prior year
+Metric YoY Variance = 
+[Total Metric] - [Metric Prior Year]
+
+// Percentage variance vs. prior year
+Metric YoY Variance % = 
+DIVIDE(
+    [Metric YoY Variance],
+    [Metric Prior Year],
+    0
+)
+
+
+// ------------------------------------------------------------------------------
+// 3. ROLLING WINDOWS & MOVING AVERAGES
+// ------------------------------------------------------------------------------
+
+// Trailing 30-day cumulative metric
+Metric Rolling 30 Days = 
+CALCULATE(
+    [Total Metric],
+    DATESINPERIOD(
+        'DateTable'[Date],
+        MAX('DateTable'[Date]),
+        -30,
+        DAY
+    )
+)
+
+// 7-day moving average of metric
+Metric 7-Day Moving Avg = 
+CALCULATE(
+    AVERAGEX(
+        DATESINPERIOD(
+            'DateTable'[Date],
+            MAX('DateTable'[Date]),
+            -7,
+            DAY
+        ),
+        [Total Metric]
+    )
+)
